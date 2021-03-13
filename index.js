@@ -6,6 +6,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const homeRouter = require('./routes/home')
+const studentRegister = require('./routes/student-register')
+const signRouter = require("./routes/student-login")
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -18,6 +20,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
+app.use('/student-login',signRouter);
+app.use('/student-register',studentRegister);
 
 app.listen(port,(req,res)=>{
     console.log("up and running")
