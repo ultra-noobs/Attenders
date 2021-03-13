@@ -1,0 +1,77 @@
+<%- include('./Partials/header.ejs') -%>
+<%- include('./Partials/chore.ejs') -%>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="text-center"> Schedule your lecture</h2>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/f-dashboard">
+          <label for="email" class="mt-2">Your email</label>
+          <input
+            class="form-control"
+            name="faculty_mail"
+            placeholder="Enter your mail"
+          />
+          <label for="name" class="mt-2">Lecture name</label>
+          <input
+            class="form-control"
+            name="name"
+            placeholder="lecture name"
+          />
+          <label for="time" class="mt-2">Lecture start time</label>
+          <input
+            class="form-control"
+            name="sttime"
+            type="time"
+            placeholder="lecture start time"
+          />
+          <label for="time" class="mt-2">Lecture end time</label>
+          <input 
+             class="form-control"
+             name="endtime"
+             type="time"
+             placeholder="lecture end time""
+             />
+          <label for="date" class="mt-2"> Lecture date</label>
+          <input 
+              class="form-control"
+              name="lecturedate"
+              type="date"
+              placeholder="Enter date of lecture"
+              />
+              <label for="id">Share this id with your students</label>
+              <input type="text" name="lecture_id" id="lecture_id">
+          <button class="btn btn-primary" type="submit">Schedule</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="container text-center">
+<button type="button" class="btn btn-primary btn-lg doubt-button" data-toggle="modal" data-target="#myModal" onclick="getId()">Schedule your lecture here </button>
+</div>
+
+<script>
+function makeid(length) {
+    var result = '';
+    var characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  function getId() {
+      var id = makeid(6);
+      var dispele = document.getElementById('lecture_id');
+      dispele.value = id;
+  }
+
+</script>

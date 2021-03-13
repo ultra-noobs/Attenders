@@ -9,6 +9,7 @@ const homeRouter = require('./routes/home')
 const studentRegister = require('./routes/student-register')
 const signRouter = require("./routes/student-login")
 const adminRouter = require("./routes/admin-login")
+const facultyRouter = require('./routes/f-dashboard')
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -24,6 +25,7 @@ app.use('/', homeRouter);
 app.use('/student-login',signRouter);
 app.use('/admin-login',adminRouter);
 app.use('/student-register',studentRegister);
+app.use('/f-dashboard',facultyRouter);
 
 app.listen(port,(req,res)=>{
     console.log("up and running")
