@@ -1,0 +1,151 @@
+<%- include('./partials/header.ejs') -%>
+<%- include('./partials/chore.ejs') -%>
+<!-- //you can use studentarray here now -->
+<link href="stylesheets/s-dashboard.css" rel="stylesheet" />  
+
+<body>
+    <div class="container container-bada-wala text-center">
+    <audio controls id="music" style="display: none;">
+        <source src="audio/timer.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <video id="video" class="video__area m-auto" height="400" width="450" autoplay muted></video>
+    <div class="validation d-flex justify-content-center align-items-center flex-column">
+        <p class="mt-5">Sit where from where it best detects you check <a href="https://facedetector0.netlify.app/" target="_blank">Here</a></p>
+        <input type="text" class="form-control w-50" placeholder="Enter lecture id here" id="id_input" name="lecture_id">
+        <button class="btn btn-primary" id="start__btn" onclick="startLecture()">start</button>
+        <div class="btn-container d-flex justify-content-lg-between flex-row" id="btn-container">
+       <a href="/"> <button class="btn btn-primary" id="end__btn">End lecture</button></a>
+        </div>
+    </div>
+    </div>
+    <script src="javascripts/face-api.min.js"></script>
+    <script>
+        let labeledFaceDescriptors;
+        var studentData = <%- JSON.stringify(studentarray) %>;
+        const video = document.getElementById("video");
+        const OneMinute = 1000*60;
+        let end__btn = document.getElementById('end__btn');
+        let intervalId,FiveMinuteIntervalId,OneMinuteIntervalId;
+        var id="";
+
+        const randomTime =()=>{
+            return Math.floor(Math.random() * OneMinute*4); 
+        }
+
+        end__btn.addEventListener("click",()=>{
+            clearInterval(intervalId);
+            clearInterval(OneMinuteIntervalId);
+            clearInterval(FiveMinuteIntervalId);
+            console.log("Everything is Cleared.")
+        })
+
+        const continuousRunFor1Min = ()=>{
+            console.log("Run for 1 min");
+            document.getElementById("music").play();
+            intervalId = setInterval(detectUser,2000);
+            setTimeout(()=>{
+                clearInterval(intervalId);
+                console.log("One Minute Finish");
+            },OneMinute);
+        }
+        const onceIn5Minute = ()=>{
+            console.log("Once IN 5 Minute Called");
+            var time = randomTime();
+            OneMinuteIntervalId = setTimeout(continuousRunFor1Min,time);
+        }
+        
+        const startVideo =()=>{
+            navigator.getUserMedia(
+                {video:{}},
+                stream =>{
+                    video.srcObject = stream;
+                },
+                err => console.error(err)
+            )
+        }
+        const startLecture = ()=>{
+            var input = document.getElementById('id_input');
+            id = input.value;
+            var st__btn = document.getElementById('start__btn');
+            var video_disp = document.getElementById('video');
+            if(input.value===""){
+                swal({
+                title: "Ohh no !!",
+                text: "Please enter correct id",
+                icon: "error",
+                button: "ok",
+                });
+            }else{
+                video_disp.style.display = "block";
+                end__btn.style.display = 'block';
+                st__btn.style.display  = "none";
+                input.style.display = "none";
+            Promise.all([
+                faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+                faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+                faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+                faceapi.nets.ssdMobilenetv1.loadFromUri("/models")
+            ]).then(async()=>{
+                labeledFaceDescriptors = await LoadImage();
+                startVideo();
+                FiveMinuteIntervalId = setInterval(onceIn5Minute,OneMinute*5);
+            });
+        }   
+        }
+        
+        const detectUser = async()=>{
+            console.log("detectUser Called");
+            const canvas = faceapi.createCanvasFromMedia(video);
+            const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors,0.5)
+            // document.body.append(canvas);
+            const displaySize = { width: video.width, height: video.height }
+            faceapi.matchDimensions(canvas,displaySize)
+            const detection =await faceapi.detectAllFaces(video,new faceapi.TinyFaceDetectorOptions())
+            .withFaceLandmarks()
+            .withFaceDescriptors();
+            const resizedDetections = faceapi.resizeResults(detection,displaySize);
+            const result = resizedDetections.map(d =>faceMatcher.findBestMatch(d.descriptor))
+            result.forEach(async(result,i)=>{
+                let finalResult = result.toString();
+                const tem = finalResult.substr(0,Math.min(7,finalResult.length));
+                console.log(finalResult+" Detected");
+                if(tem!='unknown'){
+                    console.log("unknown nhi h bhai")
+                    clearInterval(intervalId)
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', `f-dashboard/faculty/${id}`, true);
+                    await xhr.setRequestHeader('Content-Type', 'application/json');
+                    var resp = await xhr.send(
+                        JSON.stringify({
+                            student_id:finalResult
+                        }) 
+                    );
+                }
+            })
+            canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+            faceapi.draw.drawDetections(canvas,resizedDetections);
+        }
+        const LoadImage = ()=>{
+            var labels = [];
+            for(i=0;i<studentData.length;i++){
+                let name = studentData[i].student_id;
+                labels.push(name);
+            }
+            var i=0;
+            return Promise.all(
+                labels.map(async label =>{
+                    let descriptions = [];
+                        let id = studentData[i].student_id;
+                        i++;
+                        const img = await faceapi.fetchImage(`https://ancient-caverns-86358.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/attender-84a2c.appspot.com/o/${id}?alt=media&token=${id}`);
+                        const detections = await faceapi.detectSingleFace(img)
+                        .withFaceLandmarks().withFaceDescriptor();
+                        descriptions.push(detections.descriptor)
+                    return new faceapi.LabeledFaceDescriptors(label,descriptions);
+                })
+            );
+        }
+    </script>
+</body>
+</html>

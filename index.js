@@ -12,6 +12,7 @@ const adminRouter = require("./routes/admin-login")
 const facultyRouter = require('./routes/f-dashboard')
 const facultySigninRoute = require("./routes/faculty-login")
 const registerRouter = require("./routes/register")
+const studentRouter = require("./routes/s-dashboard")
 
 var app = express();
 const  mongoose = require('mongoose')
@@ -45,6 +46,7 @@ app.use('/student-login',signRouter);
 app.use('/admin-login',adminRouter);
 app.use('/student-register',studentRegister);
 app.use('/f-dashboard',facultyRouter);
+app.use('/s-dashboard',studentRouter);
 app.use('/faculty-login',facultySigninRoute);
 app.use('/register',registerRouter);
 
