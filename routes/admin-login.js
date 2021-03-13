@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('adminlogin',{})
+  res.render('admin-login',{})
 });
 
 router.post('/',(req,res)=>{
@@ -12,8 +12,7 @@ router.post('/',(req,res)=>{
     if (adminEmail === 'nlok5923@gmail.com' && adminPassword === '123') {
       res.render('signup', {});
     } else {
-    //   var userVerified = false;
-      res.render('adminlogin', {});
+      res.render('admin-login', {});
     }
 })
 

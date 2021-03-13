@@ -1,5 +1,6 @@
 <%- include('./Partials/header.ejs') -%>
 <%- include('./Partials/chore.ejs') -%>
+<link rel="stylesheet" href="stylesheets/f-dashboard.css" />
 
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
@@ -52,8 +53,8 @@
 </div>
 
 </div>
-<div class="container text-center">
-<button type="button" class="btn btn-primary btn-lg doubt-button" data-toggle="modal" data-target="#myModal" onclick="getId()">Schedule your lecture here </button>
+<div class="container">
+<button type="button" class="btn schedule btn-lg doubt-button" data-toggle="modal" data-target="#myModal" onclick="getId()">Schedule your lecture here </button>
 </div>
 
 <% lectureInf.forEach((data)=>{ %>
@@ -64,7 +65,7 @@
         <h5 class="card-title">Timing: <%= data.st_time%> - <%=data.end_time %></h5>
         <p class="card-text">Date: <%= data.lecture_date %></p>
         <% src = 'http://localhost:3000/f-dashboard/attendence/' + data.lecture_id %> 
-        <a href="<%= src %>" class="btn btn-primary" >Attendence Record</a>
+        <a href="<%= src %>" class="btn" >Attendence Record</a>
         <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Set occur</a>
       </div>
     </div>

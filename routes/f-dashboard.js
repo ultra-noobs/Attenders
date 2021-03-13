@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const lectureData = require("../models/lectureData")
+var mail = "";
+router.post("/mail",(req,res)=>{
+  mail = req.body.mail;
+})
 
 router.get("/",async (req,res)=>{
   await lectureData.find({faculty_mail:mail})
