@@ -8,6 +8,7 @@ var logger = require('morgan');
 const homeRouter = require('./routes/home')
 const studentRegister = require('./routes/student-register')
 const signRouter = require("./routes/student-login")
+const adminRouter = require("./routes/admin-login")
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
 app.use('/student-login',signRouter);
+app.use('/admin-login',adminRouter);
 app.use('/student-register',studentRegister);
 
 app.listen(port,(req,res)=>{
