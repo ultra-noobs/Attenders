@@ -10,8 +10,24 @@ const studentRegister = require('./routes/student-register')
 const signRouter = require("./routes/student-login")
 const adminRouter = require("./routes/admin-login")
 const facultyRouter = require('./routes/f-dashboard')
-
 var app = express();
+const  mongoose = require('mongoose')
+
+mongoose
+  .connect('mongodb+srv://attenderdp:doctorpatient1234@cluster0.asb7n.mongodb.net/test', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('connected');
+  })
+  .catch((err) => {
+    console.log('not connected',err);
+  });
+app.get("/test",(req,res)=>{
+  res.render('testing',{})
+})
+
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '10mb', extended: true }));
