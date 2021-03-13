@@ -10,6 +10,8 @@ const studentRegister = require('./routes/student-register')
 const signRouter = require("./routes/student-login")
 const adminRouter = require("./routes/admin-login")
 const facultyRouter = require('./routes/f-dashboard')
+const facultySigninRoute = require("./routes/faculty-login")
+
 var app = express();
 const  mongoose = require('mongoose')
 
@@ -42,6 +44,7 @@ app.use('/student-login',signRouter);
 app.use('/admin-login',adminRouter);
 app.use('/student-register',studentRegister);
 app.use('/f-dashboard',facultyRouter);
+app.use('/faculty-login',facultySigninRoute);
 
 app.listen(port,(req,res)=>{
     console.log("up and running")
