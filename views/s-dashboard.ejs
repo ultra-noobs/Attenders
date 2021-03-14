@@ -111,6 +111,7 @@
                 let finalResult = result.toString();
                 const tem = finalResult.substr(0,Math.min(7,finalResult.length));
                 console.log(finalResult+" Detected");
+                finalResult = finalResult.slice(0,9);
                 if(tem!='unknown'){
                     // console.log("unknown nhi h bhai")
                     clearInterval(intervalId)
