@@ -4,7 +4,7 @@
   "description": "<p>\r With the onset of pandemic era many institution started following remote learning mode in which instructor take classes through online meeting platforms like zoom, google meet etc So that student can attend lecture by remain at home",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":"node index"
   },
   "repository": {
     "type": "git",
