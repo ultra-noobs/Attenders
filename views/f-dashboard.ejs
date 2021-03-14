@@ -64,7 +64,7 @@
       <div class="card-body">
         <h5 class="card-title">Timing: <%= data.st_time%> - <%=data.end_time %></h5>
         <p class="card-text">Date: <%= data.lecture_date %></p>
-        <% src = 'http://localhost:3000/f-dashboard/attendence/' + data.lecture_id %> 
+        <% src = 'https://attender01.herokuapp.com/f-dashboard/attendence/' + data.lecture_id %> 
         <a href="<%= src %>" class="btn" >Attendence Record</a>
         <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Set occur</a>
       </div>
