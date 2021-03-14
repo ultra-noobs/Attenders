@@ -1,0 +1,57 @@
+<%- include('./Partials/chore.ejs') -%>
+<div class="container">
+<table class="table table-striped" id="student_data">
+    <thead>
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Roll no</th>
+        <th scope="col">Occurence</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% var i=0 %>
+    <% studentInfo.forEach((data)=>{%>
+      <% if(data.times >= val){ %> 
+        <tr>
+            <th scope="row"><%= i %></th>
+            <td><%= data.student_id %></td>
+            <td><%= data.times %></td>
+          </tr>
+          <% i = i+1 %>
+        <% } %>
+    <%})%>
+    </tbody>
+  </table>
+  <% var name = "lecture_"+lecture_id %>
+  <div class="container text-center">
+  <% if(studentInfo.length>0){ %> 
+  <button class="btn btn-primary" onclick="exportToExcel('student_data','<%= name %>')">Export Table Data To Excel File <i class="fa fa-download" aria-hidden="true"></i></button>
+   <% } else  {%>
+    <h1> No class yet</h1>
+   <% } %>
+  </div>  
+</div>
+<script>
+  function exportToExcel(tableID, filename){
+    var downloadurl;
+    var dataFileType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    filename = filename?filename+'.xls':'export_excel_data.xls';
+    
+    downloadurl = document.createElement("a");
+    document.body.appendChild(downloadurl);
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTMLData], {
+            type: dataFileType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
+        downloadurl.download = filename;
+        downloadurl.click();
+    }
+  }
+
+</script>

@@ -51,7 +51,8 @@
         }
         const onceIn5Minute = ()=>{
             console.log("Once IN 5 Minute Called");
-            var time = randomTime();
+            // var time = randomTime();
+            var time = 5000;
             OneMinuteIntervalId = setTimeout(continuousRunFor1Min,time);
         }
         
@@ -89,7 +90,7 @@
             ]).then(async()=>{
                 labeledFaceDescriptors = await LoadImage();
                 startVideo();
-                FiveMinuteIntervalId = setInterval(onceIn5Minute,OneMinute*5);
+                FiveMinuteIntervalId = setInterval(onceIn5Minute,10000);
             });
         }   
         }
@@ -111,7 +112,7 @@
                 const tem = finalResult.substr(0,Math.min(7,finalResult.length));
                 console.log(finalResult+" Detected");
                 if(tem!='unknown'){
-                    console.log("unknown nhi h bhai")
+                    // console.log("unknown nhi h bhai")
                     clearInterval(intervalId)
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', `f-dashboard/faculty/${id}`, true);

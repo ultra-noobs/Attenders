@@ -15,6 +15,16 @@ const registerRouter = require("./routes/register")
 const studentRouter = require("./routes/s-dashboard")
 
 var app = express();
+
+app.set('view engine', 'ejs');
+app.use(logger('dev'));
+app.use(bodyParser.json({ limit: '10mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 const  mongoose = require('mongoose')
 
 mongoose
@@ -31,15 +41,6 @@ mongoose
 app.get("/test",(req,res)=>{
   res.render('testing',{})
 })
-
-app.set('view engine', 'ejs');
-app.use(logger('dev'));
-app.use(bodyParser.json({ limit: '10mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
 app.use('/student-login',signRouter);

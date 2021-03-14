@@ -72,6 +72,28 @@
     </div>
 <% }) %>
 
+<div class="modal fade" id="myModal1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-head  er">
+        <h2 class="text-center"> Set you lecture occurence</h2>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="occurform" action="/f-dashboard/set-occur">
+          <label for="occurence" class="mt-2">Set occurence according to you lecture duration</label>
+          <input
+            type="number"
+            class="form-control"
+            name="occur"
+            placeholder="Enter your occurence number"
+          />
+          <button class="btn btn-primary" type="submit" >Set occurence</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function makeid(length) {
     var result = '';
