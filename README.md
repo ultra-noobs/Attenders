@@ -35,16 +35,17 @@ We decided to track students for continuous 1 minute in the interval of 5 minute
   <h2> Student Sign In Page </h2>
 <img src="images/p2.png" height="400">
 
-  <span>
   <h2>Student Register Page </h2>
 <img src="images/p3.png" height="400">
+<h2>Student Dashboard Page</h2>
 <img src="images/p4.png" height="400">
-  </span>
-  <span>
+
+<h2>Instructor Dashboard</h2>
 <img src="images/p5.png" height="400">
+<h2>Attendance Sheet</h2>
 <img src="images/p6.png" height="400">
-  </span>
-  
+
+ <h2>Testing Web</h2>
 <img src="images/Screenshot (57).png" height="400">
 
  ### For face detection:
