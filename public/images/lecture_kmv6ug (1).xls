@@ -1,0 +1,17 @@
+<table class="table table-striped" id="student_data">
+    <thead>
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Roll no</th>
+        <th scope="col">Occurence</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    
+      
+    
+      
+    
+    </tbody>
+  </table>
