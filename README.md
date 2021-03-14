@@ -23,15 +23,28 @@ We decided to track students for continuous 1 minute in the interval of 5 minute
 
 ### Tech Stack: 
 <span>
-<img src="logo/nodejs.png" height="40">
-<img src="logo/ejs.png" height="40">
-<img src="logo/css3.png" height="40">
-<img src="logo/mongo.png" height="40">
-<img src="logo/mongoose.png" height="40">
-<img src="logo/express.png" height="40">
+<img src="logo/nodejs.png" height="40"> <img src="logo/ejs.png" height="40">
+<img src="logo/css3.png" height="40"> <img src="logo/mongo.png" height="40">
+<img src="logo/mongoose.png" height="40"> <img src="logo/express.png" height="40">
 <img src="logo/bootstrap.png" height="40">
 <span>
+
+### Project Sneak peak 
+<span>
+<img src="images/p1.png" height="400">
+<img src="images/p2.png" height="400">
+  </span>
+  <span>
+<img src="images/p3.png" height="400">
+<img src="images/p4.png" height="400">
+  </span>
+  <span>
+<img src="images/p5.png" height="400">
+<img src="images/p6.png" height="400">
+  </span>
   
+<img src="images/Screenshot (57).png" height="400">
+
  ### For face detection:
  
  [face-api.js](https://justadudewhohacks.github.io/face-api.js/docs/index.html)
