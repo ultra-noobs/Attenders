@@ -30,11 +30,13 @@ We decided to track students for continuous 1 minute in the interval of 5 minute
 <span>
 
 ### Project Sneak peak 
-<span>
+  <h2> Landing Page </h2>
 <img src="images/p1.png" height="400">
+  <h2> Student Sign In Page </h2>
 <img src="images/p2.png" height="400">
-  </span>
+
   <span>
+  <h2>Student Register Page </h2>
 <img src="images/p3.png" height="400">
 <img src="images/p4.png" height="400">
   </span>
