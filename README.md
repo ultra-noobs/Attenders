@@ -54,6 +54,6 @@ We decided to track students for continuous 1 minute in the interval of 5 minute
 
 ### Team members; 
  - Keshav Agarwal <br />
-  <a href="https://www.linkedin.com/in/keshav-agarwal-84b5221a9/"><img src="https://edent.github.io/SuperTinyIcons/images/svg/linkedin.svg" width="30" title="LinkedIn" /></a> <a href="https://github.com/The-Keshav-Agarwal"><img  src="https://edent.github.io/SuperTinyIcons/images/png/github.png" width="30" /></a>
+  <a href="https://www.linkedin.com/in/keshavagarwal1710/"><img src="https://edent.github.io/SuperTinyIcons/images/svg/linkedin.svg" width="30" title="LinkedIn" /></a> <a href="https://github.com/keshavagarwal17"><img  src="https://edent.github.io/SuperTinyIcons/images/png/github.png" width="30" /></a>
  - Nitanshu Lokhande <br />
   <a href="https://www.linkedin.com/in/nitanshu-lokhande-5b60691a0/"><img src="https://edent.github.io/SuperTinyIcons/images/svg/linkedin.svg" width="30" title="LinkedIn" /></a> <a href="https://github.com/nlok5923"><img  src="https://edent.github.io/SuperTinyIcons/images/png/github.png" width="30" /></a>
