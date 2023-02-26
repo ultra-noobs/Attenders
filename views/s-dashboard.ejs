@@ -90,7 +90,9 @@
             ]).then(async()=>{
                 labeledFaceDescriptors = await LoadImage();
                 startVideo();
-                FiveMinuteIntervalId = setInterval(onceIn5Minute,5*OneMinute);
+                // FiveMinuteIntervalId = setInterval(onceIn5Minute,5*OneMinute);
+                FiveMinuteIntervalId = setInterval(onceIn5Minute,5*100);
+            
             });
         }   
         }
@@ -107,6 +109,7 @@
             .withFaceDescriptors();
             const resizedDetections = faceapi.resizeResults(detection,displaySize);
             const result = resizedDetections.map(d =>faceMatcher.findBestMatch(d.descriptor))
+            console.log("Rsults: ", result);
             result.forEach(async(result,i)=>{
                 let finalResult = result.toString();
                 const tem = finalResult.substr(0,Math.min(7,finalResult.length));
@@ -134,15 +137,19 @@
                 let name = studentData[i].student_id;
                 labels.push(name);
             }
+            console.log("LAbels ", labels);
             var i=0;
             return Promise.all(
                 labels.map(async label =>{
                     let descriptions = [];
                         let id = studentData[i].student_id;
                         i++;
-                        const img = await faceapi.fetchImage(`https://ancient-caverns-86358.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/attender-84a2c.appspot.com/o/${id}?alt=media&token=${id}`);
+                        console.log(" this is id ", id);
+                        const img = await faceapi.fetchImage(`https://cors-anywhere.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/attender-84a2c.appspot.com/o/${id}?alt=media&token=${id}`);
+                        console.log("fectech: ", img);
                         const detections = await faceapi.detectSingleFace(img)
                         .withFaceLandmarks().withFaceDescriptor();
+                        console.log("detections: ", detections);
                         descriptions.push(detections.descriptor)
                     return new faceapi.LabeledFaceDescriptors(label,descriptions);
                 })

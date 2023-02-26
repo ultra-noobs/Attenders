@@ -76,6 +76,7 @@ router.post('/',upload1.single('image'),async (req,res)=>{
     const studentPassword = req.body.psw;
     const rounds = 10;
     var hashedPassword = '';
+    console.log(" This is req.body :", req.body);
 
     // the password created is being hashed using bcrypt to maintain data privacy
     await bcrypt.hash(studentPassword, rounds, (err, hash) => {
@@ -92,7 +93,7 @@ router.post('/',upload1.single('image'),async (req,res)=>{
         first_name: req.body.fname,
         last_name: req.body.lname,
         email: req.body.usremail,
-        password: hashedPassword,
+        password: studentPassword,
         role: "student",
         student_id: req.body.roll_number,
       });
