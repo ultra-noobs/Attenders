@@ -15,16 +15,18 @@ router.post('/',async (req,res)=>{
         return;
       }
       hashedPassword = hash;
+      console.log("body: ", req.body);
+      console.log("password: ", studentPassword);
       let studentDetails = new userData({
         first_name: req.body.fname,
         last_name: req.body.lname,
         email: req.body.usremail,
-        password: hashedPassword,
+        password: studentPassword,
         role:"faculty"
       });
       studentDetails.save()
         .then((doc) => {
-          console.log(doc)
+          console.log("saved:",doc)
         })
         .catch((err) => {
           console.log('error : ', err);
