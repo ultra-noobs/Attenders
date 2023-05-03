@@ -23,23 +23,25 @@ router.post("/", async (req,resp,next)=>{
           .then(async (doc) => {
             if(doc.length !=0){
             var ob1;
-            ob1 = await bcrypt.compare(
-              req.body.usrpsw,
-              doc[0].password,
-              (err, res) => {
-                if (err) {
-                  resp.render('login', {});
-                  console.error(err);
-                  return;
-                }
+            // ob1 = await bcrypt.compare(
+            //   req.body.usrpsw,
+            //   doc[0].password,
+            //   (err, res) => {
+
+                // if (err) {
+                //   resp.render('login', {});
+                //   console.error(err);
+                //   return;
+                // }
+                const res = req.body.usrpsw === doc[0].password;
                 if(res){
                 resp.redirect("/f-dashboard")
                 }
                 else{
                 resp.render('faculty-login', {});
                 }
-              }
-            );
+              // }
+            // );
             }else{
               resp.render('faculty-login', {});
             }
