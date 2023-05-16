@@ -91,7 +91,7 @@
                 labeledFaceDescriptors = await LoadImage();
                 startVideo();
                 // FiveMinuteIntervalId = setInterval(onceIn5Minute,5*OneMinute);
-                FiveMinuteIntervalId = setInterval(onceIn5Minute,5*100);
+                FiveMinuteIntervalId = setInterval(onceIn5Minute,2*OneMinute);
             
             });
         }   
@@ -133,6 +133,7 @@
         }
         const LoadImage = ()=>{
             var labels = [];
+            console.log(studentData);
             for(i=0;i<studentData.length;i++){
                 let name = studentData[i].student_id;
                 labels.push(name);
@@ -146,7 +147,7 @@
                         i++;
                         console.log(" this is id ", id);
                         const img = await faceapi.fetchImage(`https://cors-anywhere.herokuapp.com/https://firebasestorage.googleapis.com/v0/b/attender-84a2c.appspot.com/o/${id}?alt=media&token=${id}`);
-                        console.log("fectech: ", img);
+                        // console.log("fectech: ", img);
                         const detections = await faceapi.detectSingleFace(img)
                         .withFaceLandmarks().withFaceDescriptor();
                         console.log("detections: ", detections);
