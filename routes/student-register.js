@@ -93,6 +93,7 @@ router.post('/',upload1.single('image'),async (req,res)=>{
         first_name: req.body.fname,
         last_name: req.body.lname,
         email: req.body.usremail,
+        parent_email : req.body.parentemail,
         password: studentPassword,
         role: "student",
         student_id: req.body.roll_number,

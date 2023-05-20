@@ -42,6 +42,14 @@
       id="usremail",
       required
     />
+    <label class="mt-2">Parent Email</label>
+    <input
+      type="email"
+      placeholder="Enter your parent email address."
+      name="parentemail"
+      id="parentemail",
+      required
+    />
     <label class="mt-2">Create Password</label>
     <input
       type="password"
@@ -138,6 +146,8 @@ function completionMessage(){
   lname = lname.value;
   let usremail = document.getElementById('usremail')
   usremail = usremail.value
+  let parentemail = document.getElementById('parentemail')
+  parentemail = parentemail.value
   let psw = document.getElementById('psw')
   psw = psw.value
   if(fname===""||lname===""||usremail===""||psw==="" || img_btn.value==="") {

@@ -47,7 +47,7 @@
             setTimeout(()=>{
                 clearInterval(intervalId);
                 console.log("One Minute Finish");
-            },OneMinute);
+            },100);
         }
         const onceIn5Minute = ()=>{
             console.log("Once IN 5 Minute Called");
@@ -91,7 +91,7 @@
                 labeledFaceDescriptors = await LoadImage();
                 startVideo();
                 // FiveMinuteIntervalId = setInterval(onceIn5Minute,5*OneMinute);
-                FiveMinuteIntervalId = setInterval(onceIn5Minute,2*OneMinute);
+                FiveMinuteIntervalId = setInterval(onceIn5Minute,200);
             
             });
         }   

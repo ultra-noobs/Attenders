@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 var bodyParser = require('body-parser')
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -13,8 +13,15 @@ const facultyRouter = require('./routes/f-dashboard')
 const facultySigninRoute = require("./routes/faculty-login")
 const registerRouter = require("./routes/register")
 const studentRouter = require("./routes/s-dashboard")
+const cron = require('node-cron')
+const { sendMailToAllStudentParents } = require('./services/sendMail')
+// const studentData = require('../models/studentData')
 
 var app = express();
+
+cron.schedule('0 0 * * 0', () => {
+  sendMailToAllStudentParents();
+});
 
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
@@ -38,6 +45,7 @@ mongoose
   .catch((err) => {
     console.log('not connected',err);
   });
+
 app.get("/test",(req,res)=>{
   res.render('testing',{})
 })
