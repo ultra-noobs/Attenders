@@ -53,6 +53,8 @@ router.post("/faculty/:id",async(req,res)=>{
     console.log("inside post ");
     const student_id = req.body.student_id;
     const lec = await lectureData.findOne({lecture_id:id});
+    console.log('called here ')
+    console.log('body ', req.body)
     if(lec!=null){
         const y1 = (lec.lecture_date).substr(0,4);
         const m1 = (lec.lecture_date).substr(5,2);
@@ -90,6 +92,10 @@ router.post("/faculty/:id",async(req,res)=>{
             }
         }
     }
+
+    res.status(200).json({
+        success: true
+    });
 })
 
 module.exports = router;

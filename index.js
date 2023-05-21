@@ -59,7 +59,6 @@ app.use('/s-dashboard',studentRouter);
 app.use('/faculty-login',facultySigninRoute);
 app.use('/register',registerRouter);
 
-
 app.listen(port,(req,res)=>{
     console.log("up and running")
 })
